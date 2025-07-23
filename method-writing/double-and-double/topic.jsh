@@ -164,7 +164,7 @@ public double calculateStandardDeviation(double[] numbers) {
 }
 
 // Test your methods here - uncomment and modify as needed
-/*
+
 System.out.println("Testing Basic Operations:");
 System.out.println("3.5 + 2.7 = " + calculateSum(3.5, 2.7));           // Should print 6.2
 System.out.println("Average of 1,2,3 = " + calculateAverage(1.0, 2.0, 3.0)); // Should print 2.0
@@ -206,4 +206,4 @@ System.out.println("Standard deviation: " + calculateStandardDeviation(testArray
 // Test edge cases
 double[] emptyArray = {};
 // System.out.println("Mean of empty array: " + calculateMean(emptyArray)); // Test your error handling
-*/
+

@@ -95,7 +95,7 @@ public boolean xorGate(boolean a, boolean b) {
     
 
 // Test your methods here - uncomment and modify as needed
-/*
+
 System.out.println("Testing isAdult:");
 System.out.println("Age 17: " + isAdult(17));      // Should print false
 System.out.println("Age 18: " + isAdult(18));      // Should print true
@@ -144,4 +144,4 @@ System.out.println("OR true,false: " + orGate(true, false));      // Should prin
 System.out.println("NOT true: " + notGate(true));                 // Should print false
 System.out.println("XOR true,false: " + xorGate(true, false));    // Should print true
 System.out.println("XOR true,true: " + xorGate(true, true));      // Should print false
-*/
+

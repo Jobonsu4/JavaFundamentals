@@ -206,7 +206,7 @@ public double calculateAverage(int[] numbers) {
 
 
 // Test your methods here - uncomment and modify as needed
-/*
+
 System.out.println("Testing Basic Math:");
 System.out.println("5 + 3 = " + calculateSum(5, 3));           // Should print 8
 System.out.println("4 * 6 = " + calculateProduct(4, 6));       // Should print 24
@@ -252,4 +252,4 @@ System.out.println("\nTesting Array Statistics:");
 int[] testArray = {1, 5, 3, 9, 2};
 System.out.println("Max of [1,5,3,9,2]: " + findMax(testArray)); // Should print 9
 System.out.println("Average of [1,5,3,9,2]: " + calculateAverage(testArray)); // Should print 4.0
-*/
+

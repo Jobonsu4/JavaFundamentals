@@ -109,7 +109,7 @@ public int power(int base, int exponent) {
    
 
 // Test your methods here - uncomment and modify as needed
-/*
+
 System.out.println("Testing countdown:");
 countdown(5);
 
@@ -141,4 +141,4 @@ System.out.println("\nTesting power:");
 System.out.println("2^3: " + power(2, 3));    // Should print 8
 System.out.println("5^2: " + power(5, 2));    // Should print 25
 System.out.println("3^0: " + power(3, 0));    // Should print 1
-*/
+

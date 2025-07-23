@@ -71,16 +71,29 @@ public long calculateFactorial(int n) {
 // Exercise 7: Array Sum
 // Calculate and return the sum of all numbers in an array
 public int sumArray(int[] numbers) {
-    // Your code here
-    
+     int sum = 0;
+    for (int i = 0; i < numbers.length; i++) {
+        sum += numbers[i];
+    }
+    return sum;
 }
+
+    
 
 // Exercise 8: Character Counter
 // Count how many times a specific character appears in a string
 public int countCharacter(String text, char target) {
-    // Your code here
-    
+     int count = 0;
+    for (int i = 0; i < text.length(); i++) {
+        if (text.charAt(i) == target) {
+            count++;
+        }
+    }
+    return count;
 }
+
+    
+
 
 // Exercise 9: Pattern Printer
 // Print a triangle pattern of stars
@@ -90,7 +103,7 @@ public void printStars(int rows) {
 }
 
 // Test your methods here - uncomment and modify as needed
-/*
+
 System.out.println("Testing printNumbers:");
 printNumbers(1, 5);
 printNumbers(3, 7);
@@ -132,4 +145,4 @@ System.out.println("\nTesting printStars:");
 printStars(4);
 System.out.println();
 printStars(2);
-*/
+
