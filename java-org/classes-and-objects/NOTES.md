@@ -202,21 +202,9 @@ class Thing {
 ### Single Responsibility
 Each class should have one clear purpose:
 
-```java
-// Good - Person class handles person data
-class Person {
-    String name;
-    int age;
-    public String introduce() { ... }
-}
-
-// Good - BankAccount class handles banking operations
-class BankAccount {
-    double balance;
-    public void deposit(double amount) { ... }
-}
+`optopo=t
 ```
-
+t
 ## Common Patterns
 
 ### State and Behavior Together

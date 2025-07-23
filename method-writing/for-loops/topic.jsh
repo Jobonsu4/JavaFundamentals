@@ -4,13 +4,20 @@
 // Exercise 1: Number Sequence
 // Print all numbers from start to end (inclusive)
 public void printNumbers(int start, int end) {
+     for (int i = start; i <= end; i++) {
+        System.out.println(i);
     // Your code here
-    
+     }
 }
 
 // Exercise 2: Sum Calculator
 // Calculate the sum of all integers from 1 to n
 public int calculateSum(int n) {
+    int sum = 0;
+    for (int i = 1; i <= n; i++) {
+        sum = sum + i;
+    }
+    return sum;
     // Your code here
     
 }
@@ -18,13 +25,20 @@ public int calculateSum(int n) {
 // Exercise 3: Multiplication Table
 // Print the multiplication table for the given number (1 through 10)
 public void multiplicationTable(int number) {
-    // Your code here
-    
+      for (int i = 1; i <= 10; i++) {
+        System.out.println(number + " x " + i + " = " + (number * i));
+    }
 }
+    // Your code here
+
 
 // Exercise 4: Even Numbers Only
 // Print all even numbers from 2 up to the limit (inclusive)
 public void printEvenNumbers(int limit) {
+    for (int i = 2; i <= limit; i += 2) {
+    System.out.println(i);  
+}
+```
     // Your code here
     
 }
@@ -32,16 +46,27 @@ public void printEvenNumbers(int limit) {
 // Exercise 5: String Repeater
 // Return a string with the given text repeated the specified number of times
 public String repeatString(String text, int times) {
+     String result = "";
+    for (int i = 0; i < times; i++) {
+        result += text;
+    }
+    return result;
+}
     // Your code here
     
-}
+
 
 // Exercise 6: Factorial Calculator
 // Calculate n! (n factorial) using a for loop
 public long calculateFactorial(int n) {
+     int result = 1;
+    for (int i = 1; i <= n; i++) {
+        result *= i;
+    }
+    return result;
+}
     // Your code here
     
-}
 
 // Exercise 7: Array Sum
 // Calculate and return the sum of all numbers in an array

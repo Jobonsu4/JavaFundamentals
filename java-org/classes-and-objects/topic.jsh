@@ -1,87 +1,164 @@
-// Classes and Objects Exercises - Complete the classes and methods below
-// Save this file and load it in jshell with: /open topic.jsh
+ //Classes and Objects Exercises - Complete the classes and methods below
+ //Save this file and load it in jshell with: /open topic.jsh
 import java.util.ArrayList;
 
 // Exercise 1: Basic Class Creation
 // Create a Person class with name and age fields
 class Person {
-    // Your fields here
+    String name;
+    int age;
+
+   
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+   
+    public String introduce() {
+        return "Hello, I'm " + name + " and I'm " + age + " years old.";
+    }
+
     
-    // Your constructor here
-    
-    // Your introduce() method here
-    
+
 }
+
+    
+
 
 // Exercise 2: Class with Methods
-// Create a BankAccount class with account operations
 class BankAccount {
-    // Your fields here
-    
-    // Your constructor here
-    
-    // Your deposit method here
-    
-    // Your withdraw method here
-    
-    // Your getBalance method here
-    
-    // Your getAccountInfo method here
-    
+    String accountNumber;
+    double balance;
+
+   
+    public BankAccount(String accountNumber) {
+        this.accountNumber = accountNumber;
+        this.balance = 0.0;
+    }
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+        } else {
+            System.out.println("Deposit amount must be positive.");
+        }
+    }
+
+
+    public boolean withdraw(double amount) {
+        if (amount > 0 && balance >= amount) {
+            balance -= amount;
+            return true;
+        } else {
+            System.out.println("Insufficient funds or invalid amount.");
+            return false;
+        }
+    }
+
+   
+    public double getBalance() {
+        return balance;
+    }
+
+   
+    public String getAccountInfo() {
+        return "Account Number: " + accountNumber + ", Balance: $" + balance;
+    }
 }
 
-// Exercise 3: Object Creation and Usage
-// Create and return a Person object
+
+//Exercise 3: Object Creation and Usage
+// Creates and returns a Person object
 public Person createPerson(String name, int age) {
-    // Your code here
-    
+    return new Person(name, age);
 }
 
-// Create and return a BankAccount object
+// Creates and returns a BankAccount object
 public BankAccount createBankAccount(String accountNumber) {
-    // Your code here
-    
+    return new BankAccount(accountNumber);
 }
 
-// Demonstrate creating and using a Person object
+// Demonstrates creating and using a Person object
 public void demonstratePersonUsage() {
-    // Your code here
-    
+    Person person = createPerson("Alice", 30);
+    String intro = person.introduce();
+    System.out.println(intro);
 }
+
+
 
 // Exercise 4: Working with Multiple Objects
 // Create a Car class
 class Car {
     // Your fields here
+    String brand;
+    String model;
+    int year;
     
     // Your constructor here
-    
+    public Car(String brand, String model, int year) {
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+    }
     // Your getCarInfo method here
+ public String getCarInfo() {
+        return brand + " " + model + " (" + year + ")";
+    }
+
     
     // Your isClassic method here (car is classic if > 25 years old)
-    
+     public boolean isClassic() {
+        int currentYear = java.time.Year.now().getValue();  // Get current year
+        return (currentYear - year) > 25;
+}
 }
 
 // Compare two cars and return which is older
 public Car compareCars(Car car1, Car car2) {
     // Your code here
-    
+    if (car1.year < car2.year) {
+        return car1;
+    } else if (car2.year < car1.year) {
+        return car2;
+    } else {
+        return null; // Both cars are the same year
+    }
 }
+
+
 
 // Exercise 5: Object State and Behavior
 // Create a Counter class that can increment/decrement
 class Counter {
     // Your fields here
+    private int count;
+
     
     // Your constructor here
+      public Counter() {
+        this.count = 0;
+    }
     
     // Your increment method here
+     public void increment() {
+        count++;
+    }
+
     
     // Your decrement method here
+     public void decrement() {
+        count--;
+    }
     
     // Your reset method here
+     public void reset() {
+        count = 0;
+    }
     
     // Your getCount method here
+     public int getCount() {
+        return count;
+    }
     
 }
 
@@ -89,12 +166,40 @@ class Counter {
 // Create a Student class with input validation
 class Student {
     // Your fields here
+     private String name;
+    private int grade;
+    private double gpa;
+
     
     // Your constructor with validation here
+    public Student(String name, int grade, double gpa) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Name cannot be null or empty.");
+        }
+
+        if (grade < 1 || grade > 12) {
+            throw new IllegalArgumentException("Grade must be between 1 and 12.");
+        }
+
+        if (gpa < 0.0 || gpa > 4.0) {
+            throw new IllegalArgumentException("GPA must be between 0.0 and 4.0.");
+        }
+
+        this.name = name;
+        this.grade = grade;
+        this.gpa = gpa;
+    }
     
     // Your isHonorStudent method here
+     public boolean isHonorStudent() {
+        return gpa >= 3.5;
+    }
+
     
     // Your getStudentInfo method here
+     public String getStudentInfo() {
+        return "Name: " + name + ", Grade: " + grade + ", GPA: " + gpa;
+    }
     
 }
 
@@ -102,31 +207,97 @@ class Student {
 // Create a Book class
 class Book {
     // Your fields here
-    
-    // Your constructor here
-    
+    class Book {
+    String title;
+    String author;
+    boolean isCheckedOut;
+
+ // Your constructor here
+     public Book(String title, String author) {
+        this.title = title;
+        this.author = author;
+        this.isCheckedOut = false; // default: available
+    }
+
+  
     // Add any helpful methods here
-    
+        public void checkOut() {
+        isCheckedOut = true;
+    }
+
+    public void returnBook() {
+        isCheckedOut = false;
+    }
+
+    public boolean isAvailable() {
+        return !isCheckedOut;
+    }
+
+    public String getInfo() {
+        return title + " by " + author + (isCheckedOut ? " [Checked Out]" : " [Available]");
+    }
+}
 }
 
 // Create a Library class that manages books
 class Library {
-    // Your fields here
+    private ArrayList<Book> books;
+
+    public Library() {
+        books = new ArrayList<>();
+    }
+
     
-    // Your constructor here
+    public void addBook(Book book) {
+        books.add(book);
+    }
+
     
-    // Your addBook method here
+    public boolean checkOutBook(String title) {
+        for (Book book : books) {
+            if (book.title.equalsIgnoreCase(title) && book.isAvailable()) {
+                book.checkOut();
+                return true;
+            }
+        }
+        return false; 
+    }
+
     
-    // Your checkOutBook method here
-    
-    // Your returnBook method here
-    
-    // Your getAvailableBooks method here
-    
+    public boolean returnBook(String title) {
+        for (Book book : books) {
+            if (book.title.equalsIgnoreCase(title) && !book.isAvailable()) {
+                book.returnBook();
+                return true;
+            }
+        }
+        return false; 
+    }
+
+   
+    public int getAvailableBooks() {
+        int count = 0;
+        for (Book book : books) {
+            if (book.isAvailable()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public void listAllBooks() {
+        for (Book book : books) {
+            System.out.println(book.getInfo());
+        }
+    }
 }
 
+    
+    
+
+
 // Test your classes here - uncomment and modify as needed
-/*
+
 System.out.println("Testing Person class:");
 Person person1 = createPerson("Alice", 30);
 Person person2 = new Person("Bob", 25);
@@ -192,4 +363,4 @@ System.out.println("After checking out 1984: " + library.getAvailableBooks());
 
 library.returnBook("1984");
 System.out.println("After returning 1984: " + library.getAvailableBooks());
-*/
+

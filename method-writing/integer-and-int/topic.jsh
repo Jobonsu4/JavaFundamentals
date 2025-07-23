@@ -4,6 +4,7 @@
 // Exercise 1: Basic Math Operations
 // Return the sum of two integers
 public int calculateSum(int a, int b) {
+    return a + b;
     // Your code here
     
 }
@@ -11,18 +12,21 @@ public int calculateSum(int a, int b) {
 // Return the product of two integers
 public int calculateProduct(int a, int b) {
     // Your code here
+    return a * b;
     
 }
 
 // Exercise 2: Number Analysis
 // Return the larger of two integers
 public int findLarger(int a, int b) {
+    return (a > b) ? a : b;
     // Your code here
     
 }
 
 // Return the absolute value (always positive)
 public int findAbsoluteValue(int number) {
+     return (number < 0) ? -number : number;
     // Your code here
     
 }
@@ -30,12 +34,24 @@ public int findAbsoluteValue(int number) {
 // Exercise 3: Digit Operations
 // Count how many digits are in a positive integer
 public int countDigits(int number) {
-    // Your code here
-    
+     int count = 0;
+    do {
+        count++;
+        number /= 10;
+    } while (number > 0);
+    return count;
 }
+    
+    
 
 // Reverse the digits of a positive integer (123 becomes 321)
 public int reverseDigits(int number) {
+        int reversed = 0;
+    while (number > 0) {
+        reversed = reversed * 10 + (number % 10);
+        number /= 10;
+    }
+    return reversed;
     // Your code here
     
 }
@@ -43,12 +59,23 @@ public int reverseDigits(int number) {
 // Exercise 4: Number Classification
 // Return true if number is prime (only divisible by 1 and itself)
 public boolean isPrime(int number) {
+    if (number <= 1) return false;
+    if (number == 2) return true;
+    if (number % 2 == 0) return false;
+    for (int i = 3; i * i <= number; i += 2) {
+        if (number % i == 0) return false;
+    }
+    return true;
+}
     // Your code here
     
-}
+
 
 // Return true if number is a perfect square
 public boolean isPerfectSquare(int number) {
+    if (number < 0) return false;
+    int sqrt = (int) Math.sqrt(number);
+    return sqrt * sqrt == number;
     // Your code here
     
 }
@@ -56,12 +83,20 @@ public boolean isPerfectSquare(int number) {
 // Exercise 5: Range Operations
 // Calculate sum of all integers from start to end (inclusive)
 public int sumRange(int start, int end) {
-    // Your code here
-    
+       int sum = 0;
+    for (int i = start; i <= end; i++) {
+        sum += i;
+    }
+    return sum;
 }
+
+    
+
 
 // Count how many multiples of 'number' exist up to 'limit'
 public int countMultiples(int number, int limit) {
+     if (number == 0) return 0;
+    return limit / number;
     // Your code here
     
 }
@@ -71,38 +106,69 @@ public int countMultiples(int number, int limit) {
 // Return: -1 if num1 < num2, 0 if equal, 1 if num1 > num2
 // Handle null cases: null is considered less than any number
 public int compareIntegers(Integer num1, Integer num2) {
+    if (num1 == null && num2 == null) return 0;
+    if (num1 == null) return -1;
+    if (num2 == null) return 1;
+    return Integer.compare(num1, num2);
     // Your code here
     
 }
 
 // Try to parse string to Integer, return null if it fails
 public Integer parseIntegerSafely(String text) {
+    try {
+        return Integer.parseInt(text);
+    } catch (NumberFormatException e) {
+        return null;
+    }
+}
     // Your code here
     
-}
+
 
 // Exercise 7: Mathematical Sequences
 // Return the nth Fibonacci number (0, 1, 1, 2, 3, 5, 8, 13...)
 public int fibonacci(int n) {
+      if (n < 0) throw new IllegalArgumentException("n must be non-negative");
+    if (n == 0) return 0;
+    if (n == 1) return 1;
+    int a = 0, b = 1;
+    for (int i = 2; i <= n; i++) {
+        int temp = a + b;
+        a = b;
+        b = temp;
+    }
+    return b;
+}
     // Your code here
     
-}
+
 
 // Calculate n! (n factorial)
 public long factorial(int n) {
+     if (n < 0) throw new IllegalArgumentException("n must be non-negative");
+    long result = 1;
+    for (int i = 2; i <= n; i++) {
+        result *= i;
+    }
+    return result;
+}
     // Your code here
     
-}
+
 
 // Exercise 8: Number Conversion
 // Convert integer to binary string representation
 public String toBinaryString(int number) {
+      return Integer.toBinaryString(number);
+}
     // Your code here
     
-}
+
 
 // Convert binary string back to integer
 public int fromBinaryString(String binary) {
+     return Integer.parseInt(binary, 2);
     // Your code here
     
 }
@@ -110,15 +176,34 @@ public int fromBinaryString(String binary) {
 // Exercise 9: Array Statistics
 // Find the maximum value in an array
 public int findMax(int[] numbers) {
+    if (numbers == null || numbers.length == 0) {
+        throw new IllegalArgumentException("Array must not be null or empty");
+    }
+    int max = numbers[0];
+    for (int i = 1; i < numbers.length; i++) {
+        if (numbers[i] > max) {
+            max = numbers[i];
+        }
+    }
+    return max;
     // Your code here
     
 }
 
 // Calculate the average as a double
 public double calculateAverage(int[] numbers) {
-    // Your code here
-    
+     if (numbers == null || numbers.length == 0) {
+        throw new IllegalArgumentException("Array must not be null or empty");
+    }
+    double sum = 0;
+    for (int num : numbers) {
+        sum += num;
+    }
+    return sum / numbers.length;
 }
+
+    
+
 
 // Test your methods here - uncomment and modify as needed
 /*
