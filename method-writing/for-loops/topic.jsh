@@ -98,9 +98,15 @@ public int countCharacter(String text, char target) {
 // Exercise 9: Pattern Printer
 // Print a triangle pattern of stars
 public void printStars(int rows) {
-    // Your code here
-    
+     for (int i = 1; i <= rows; i++) {
+        for (int j = 1; j <= i; j++) {
+            System.out.print("*");
+        }
+        System.out.println();
+    }
 }
+    // Your code here
+
 
 // Test your methods here - uncomment and modify as needed
 
