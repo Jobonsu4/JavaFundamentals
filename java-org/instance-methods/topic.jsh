@@ -28,7 +28,11 @@ class Calculator {
     public void divide(double value) {
        if (value != 0) {
             result /= value;
+              } else {
+            System.out.println("Error: Division by zero");
+        }
     }
+    
     
     public double getResult() {
         // TODO: Return the current result
@@ -36,10 +40,11 @@ class Calculator {
     }
     
     public void clear() {
-        return 0.0;
+        result = 0.0;
     }
 }
-}
+
+
 
 // Exercise 2: Text processing with instance methods
 class TextProcessor {
@@ -155,13 +160,12 @@ class Temperature {
     double celsius;
     
     public Temperature(double temp, String unit) {
-         public Temperature(double temp, String unit) {
         if (unit.equalsIgnoreCase("C")) {
-            this.celsius = temp;
+            celsius = temp;
         } else if (unit.equalsIgnoreCase("F")) {
-            this.celsius = (temp - 32) * 5.0 / 9.0;
+            celsius = (temp - 32) * 5.0 / 9.0;
         } else if (unit.equalsIgnoreCase("K")) {
-            this.celsius = temp - 273.15;
+            celsius = temp - 273.15;
         } else {
             throw new IllegalArgumentException("Invalid unit. Use 'C', 'F', or 'K'.");
         }
@@ -171,62 +175,71 @@ class Temperature {
         // Conversion formulas:
         // F to C: (F - 32) * 5/9
         // K to C: K - 273.15
-    }
     
     public double getCelsius() {
         // TODO: Return temperature in Celsius
-        return this.celsius;
+        return celsius;
     }
     
     public double getFahrenheit() {
         // TODO: Return temperature in Fahrenheit
         // C to F: C * 9/5 + 32
-        return (this.celsius * 9.0 / 5.0) + 32;
+        return (celsius * 9.0 / 5.0) + 32;
     }
     
     public double getKelvin() {
         // TODO: Return temperature in Kelvin
         // C to K: C + 273.15
-        return this.celsius + 273.15;
+        return celsius + 273.15;
     }
     
     public void setCelsius(double temp) {
-        this.celsius = temp;
+          celsius = temp;
         // TODO: Set temperature in Celsius
     }
     
     public void setFahrenheit(double temp) {
-        this.celsius = (temp - 32) * 5.0 / 9.0;
-
+          celsius = (temp - 32) * 5.0 / 9.0;
         // TODO: Set temperature in Fahrenheit (convert to Celsius)
     }
     
     public void setKelvin(double temp) {
-         this.celsius = temp - 273.15;
+          celsius = temp - 273.15;
         // TODO: Set temperature in Kelvin (convert to Celsius)
     }
     
     public boolean isFreezingWater() {
-      return this.celsius + 273.15;
+      return celsius <= 0.0;
         // TODO: Return true if water would freeze (0°C or below)
         
     }
     
     public boolean isBoilingWater() {
-        
+         return celsius >= 100.0;
         // TODO: Return true if water would boil (100°C or above)
-        return false;
     }
     
     public String getTemperatureCategory() {
+         if (celsius < 0) {
+            return "Cold";
+        } else if (celsius <= 20) {
+            return "Mild";
+        } else if (celsius <= 35) {
+            return "Hot";
+        } else {
+            return "Extreme";
+        }
+    }
+}
         // TODO: Return category based on Celsius
         // Below 0: "Cold"
         // 0-20: "Mild"
         // 21-35: "Hot"
         // Above 35: "Extreme"
-        return "";
-    }
-}
+      
+    
+    
+
 
 // Exercise 5: Shopping cart with item management
 class ShoppingCart {
@@ -234,6 +247,7 @@ class ShoppingCart {
     ArrayList<Double> prices;
     
     public ShoppingCart() {
+
         // TODO: Initialize empty lists
     }
     
