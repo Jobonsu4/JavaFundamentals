@@ -4,19 +4,20 @@ import java.util.ArrayList;
 
 // Exercise 1: Reference Basics
 // Create and return array of 3 Strings
-public String[] createStringArray() {
-    // Your code here
-    
+public String[] createStringArray(){
+    return new String[] {"Apple", "Banana", "Cherry"};
 }
 
 // Check if two String references point to same object (using ==)
 public boolean areReferencesEqual(String str1, String str2) {
+      return str1 == str2;
     // Your code here
     
 }
 
 // Check if two String references have same content (using equals)
 public boolean areContentsEqual(String str1, String str2) {
+    return str1 != null && str1.equals(str2);
     // Your code here
     
 }
@@ -24,18 +25,20 @@ public boolean areContentsEqual(String str1, String str2) {
 // Exercise 2: Null Handling
 // Return true if reference is null
 public boolean isNullReference(Object obj) {
+    return obj == null;
     // Your code here
     
 }
 
 // Convert object to string, return "null" if object is null
 public String safeToString(Object obj) {
-    // Your code here
+      return (obj == null) ? "null" : obj.toString();
     
 }
 
 // Return length of string, or 0 if null
 public int safeLength(String str) {
+    return (str == null) ? 0 : str.length();
     // Your code here
     
 }
@@ -43,37 +46,51 @@ public int safeLength(String str) {
 // Exercise 3: Array References
 // Copy the reference (not content) of an array
 public int[] copyArrayReference(int[] original) {
+     return original;
     // Your code here
     
 }
 
 // Create new array with same content
 public int[] copyArrayContent(int[] original) {
-    // Your code here
+     if (original == null) return null;
+        int[] copy = new int[original.length];
+        for (int i = 0; i < original.length; i++) {
+            copy[i] = original[i];
     
+        }
+
+        return copy;
 }
 
 // Change value in array at specified index
 public void modifyArray(int[] array, int index, int newValue) {
-    // Your code here
+     if (array != null && index >= 0 && index < array.length) {
+            array[index] = newValue;
+        }
+
     
 }
 
 // Exercise 4: Object State Changes
 // Create StringBuilder with initial text
 public StringBuilder createStringBuilder(String initial) {
+     return new StringBuilder(initial);
     // Your code here
     
 }
 
 // Add text to StringBuilder
 public void appendToBuilder(StringBuilder sb, String text) {
-    // Your code here
+     if (sb != null && text != null) {
+            sb.append(text);
+        }
     
 }
 
 // Get current content as String
 public String getBuilderContent(StringBuilder sb) {
+    return (sb == null) ? "" : sb.toString();
     // Your code here
     
 }
@@ -81,18 +98,34 @@ public String getBuilderContent(StringBuilder sb) {
 // Exercise 5: Reference Comparison
 // Find first String with same content as target
 public String findStringInArray(String[] array, String target) {
-    // Your code here
+    if (array == null || target == null) return null;
+        for (String s : array) {
+            if (target.equals(s)) return s;
+        }
+        return null;
+    
     
 }
 
 // Count how many elements are null
 public int countNullReferences(Object[] array) {
-    // Your code here
+     if (array == null) return 0;
+        int count = 0;
+        for (Object obj : array) {
+            if (obj == null) count++;
+        }
+        return count;
     
 }
 
 // Replace all null elements with replacement string
 public void replaceNulls(String[] array, String replacement) {
+     if (array == null || replacement == null) return;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == null) {
+                array[i] = replacement;
+            }
+        }
     // Your code here
     
 }
@@ -100,6 +133,9 @@ public void replaceNulls(String[] array, String replacement) {
 // Exercise 6: Multiple References
 // Create two String literals and show they reference same object
 public boolean demonstrateStringPool() {
+     String a = "hello";
+        String b = "hello";
+        return a == b;
     // Your code here - create two string literals with same value
     // Return true if they reference the same object
     
@@ -107,6 +143,9 @@ public boolean demonstrateStringPool() {
 
 // Create two String objects with 'new' and show they're different
 public boolean demonstrateNewString() {
+      String a = new String("world");
+        String b = new String("world");
+        return a != b && a.equals(b);
     // Your code here - create two strings with new String()
     // Return true if they are different objects (but same content)
     
@@ -114,31 +153,41 @@ public boolean demonstrateNewString() {
 
 // Swap two references in an array
 public void swapReferences(StringBuilder[] array, int index1, int index2) {
+     if (array != null &&
+            index1 >= 0 && index1 < array.length &&
+            index2 >= 0 && index2 < array.length) {
+            StringBuilder temp = array[index1];
+            array[index1] = array[index2];
+            array[index2] = temp;
     // Your code here
-    
+            }
 }
 
 // Exercise 7: Object Creation and References
 // Create and return new ArrayList<String>
 public ArrayList<String> createArrayList() {
+     return new ArrayList<>();
     // Your code here
     
 }
 
 // Add item to list
 public void addToList(ArrayList<String> list, String item) {
-    // Your code here
+    if (list != null && item != null) {
+            list.add(item);
+        }
     
 }
 
 // Return the same list reference
 public ArrayList<String> getListReference(ArrayList<String> list) {
+     return list;
     // Your code here
     
 }
 
 // Test your methods here - uncomment and modify as needed
-/*
+
 System.out.println("Testing Reference Basics:");
 String[] array = createStringArray();
 System.out.println("Array created with length: " + array.length);
@@ -196,4 +245,4 @@ addToList(list1, "Second");
 ArrayList<String> list2 = getListReference(list1);
 System.out.println("Same list reference: " + (list1 == list2));          // Should be true
 System.out.println("List content: " + list1);
-*/
+

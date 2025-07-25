@@ -7,33 +7,38 @@ class Calculator {
     double result;
     
     public Calculator() {
-        // TODO: Initialize result to 0.0
+        result = 0.0;
+        
     }
     
     public void add(double value) {
-        // TODO: Add value to result
+        result += value;
+        
     }
     
     public void subtract(double value) {
-        // TODO: Subtract value from result
+        result -= value;
+        
     }
     
     public void multiply(double value) {
-        // TODO: Multiply result by value
+        result *= value;
     }
     
     public void divide(double value) {
-        // TODO: Divide result by value (check for division by zero)
+       if (value != 0) {
+            result /= value;
     }
     
     public double getResult() {
         // TODO: Return the current result
-        return 0.0;
+        return result;
     }
     
     public void clear() {
-        // TODO: Reset result to 0.0
+        return 0.0;
     }
+}
 }
 
 // Exercise 2: Text processing with instance methods
@@ -41,49 +46,57 @@ class TextProcessor {
     String text;
     
     public TextProcessor(String initialText) {
+         this.text = initialText;
+
         // TODO: Set the text field
     }
     
     public void setText(String newText) {
+        this.text = newText;
         // TODO: Update the text
     }
     
     public String getText() {
         // TODO: Return the current text
-        return "";
+        return text;
     }
     
     public int getLength() {
         // TODO: Return length of text
-        return 0;
+         return (text != null) ? text.length() : 0;
     }
     
     public String toUpperCase() {
         // TODO: Return text in uppercase (don't modify original)
-        return "";
+          return (text != null) ? text.toUpperCase() : "";
     }
     
     public String toLowerCase() {
         // TODO: Return text in lowercase (don't modify original)
-        return "";
+       return (text != null) ? text.toUpperCase() : "";
     }
-    
     public String reverse() {
+         StringBuilder sb = new StringBuilder(text);
+        return sb.reverse().toString();
         // TODO: Return reversed text
-        return "";
     }
     
     public boolean contains(String substring) {
-        // TODO: Check if text contains substring
-        return false;
+         if (text == null || substring == null) return false;
+        return text.contains(substring);
+       
     }
     
     public int getWordCount() {
+          if (text == null || text.trim().isEmpty()) {
+            return 0;
+        }
+        return text.trim().split("\\s+").length;
+    }
         // TODO: Return number of words in text
         // Hint: Split by spaces and count non-empty parts
-        return 0;
     }
-}
+
 
 // Exercise 3: Counter with state management
 class Counter {
@@ -91,43 +104,49 @@ class Counter {
     int step;
     
     public Counter(int initialCount, int stepValue) {
+         this.count = initialCount;
+        this.step = stepValue;
         // TODO: Initialize count and step
     }
     
     public void increment() {
+        count += step;
         // TODO: Increase count by step
     }
     
     public void decrement() {
+        count -= step;
         // TODO: Decrease count by step
     }
     
     public void reset() {
+        count = 0;
         // TODO: Set count back to 0
     }
     
     public int getCount() {
         // TODO: Return current count
-        return 0;
+        return count;
     }
     
     public void setStep(int newStep) {
+        step = newStep;
         // TODO: Change the step value
     }
     
     public int getStep() {
         // TODO: Return current step value
-        return 0;
+        return step;
     }
     
     public boolean isPositive() {
         // TODO: Return true if count > 0
-        return false;
+        return count > 0;
     }
     
     public boolean isNegative() {
         // TODO: Return true if count < 0
-        return false;
+        return count < 0;
     }
 }
 
@@ -136,6 +155,17 @@ class Temperature {
     double celsius;
     
     public Temperature(double temp, String unit) {
+         public Temperature(double temp, String unit) {
+        if (unit.equalsIgnoreCase("C")) {
+            this.celsius = temp;
+        } else if (unit.equalsIgnoreCase("F")) {
+            this.celsius = (temp - 32) * 5.0 / 9.0;
+        } else if (unit.equalsIgnoreCase("K")) {
+            this.celsius = temp - 273.15;
+        } else {
+            throw new IllegalArgumentException("Invalid unit. Use 'C', 'F', or 'K'.");
+        }
+    }
         // TODO: Convert temperature to Celsius and store
         // unit can be "C", "F", or "K"
         // Conversion formulas:
@@ -145,39 +175,45 @@ class Temperature {
     
     public double getCelsius() {
         // TODO: Return temperature in Celsius
-        return 0.0;
+        return this.celsius;
     }
     
     public double getFahrenheit() {
         // TODO: Return temperature in Fahrenheit
         // C to F: C * 9/5 + 32
-        return 0.0;
+        return (this.celsius * 9.0 / 5.0) + 32;
     }
     
     public double getKelvin() {
         // TODO: Return temperature in Kelvin
         // C to K: C + 273.15
-        return 0.0;
+        return this.celsius + 273.15;
     }
     
     public void setCelsius(double temp) {
+        this.celsius = temp;
         // TODO: Set temperature in Celsius
     }
     
     public void setFahrenheit(double temp) {
+        this.celsius = (temp - 32) * 5.0 / 9.0;
+
         // TODO: Set temperature in Fahrenheit (convert to Celsius)
     }
     
     public void setKelvin(double temp) {
+         this.celsius = temp - 273.15;
         // TODO: Set temperature in Kelvin (convert to Celsius)
     }
     
     public boolean isFreezingWater() {
+      return this.celsius + 273.15;
         // TODO: Return true if water would freeze (0°C or below)
-        return false;
+        
     }
     
     public boolean isBoilingWater() {
+        
         // TODO: Return true if water would boil (100°C or above)
         return false;
     }
