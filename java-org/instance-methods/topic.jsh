@@ -247,116 +247,166 @@ class ShoppingCart {
     ArrayList<Double> prices;
     
     public ShoppingCart() {
-
+        items = new ArrayList<>();
+        prices = new ArrayList<>();
         // TODO: Initialize empty lists
     }
     
     public void addItem(String item, double price) {
+              items.add(item);
+              prices.add(price);
+
         // TODO: Add item and price to respective lists
     }
     
     public void removeItem(String item) {
+         int index = items.indexOf(item);
+       
+        if (index != -1) {
+            items.remove(index);
+            prices.remove(index);
         // TODO: Remove first occurrence of item and its corresponding price
     }
     
+    
     public int getItemCount() {
         // TODO: Return total number of items
-        return 0;
+        return items.size();
     }
     
     public double calculateTotal() {
-        // TODO: Return sum of all prices
-        return 0.0;
+          double total = 0.0;
+        for (double price : prices) {
+            total += price;
+        }
+        return total;
     }
     
     public double calculateAverage() {
         // TODO: Return average price per item
-        return 0.0;
+              if (prices.isEmpty()) {
+            return 0.0;
+        }
+        return calculateTotal() / prices.size();
     }
     
     public String getMostExpensive() {
         // TODO: Return name of most expensive item
-        return "";
+         if (prices.isEmpty()) return "";
+        double maxPrice = prices.get(0);
+        int index = 0;
+        for (int i = 1; i < prices.size(); i++) {
+            if (prices.get(i) > maxPrice) {
+                maxPrice = prices.get(i);
+                index = i;
+            }
+        }
+        return items.get(index);
     }
     
     public String getCheapest() {
+        if (prices.isEmpty()) return "";
+        double minPrice = prices.get(0);
+        int index = 0;
+        for (int i = 1; i < prices.size(); i++) {
+            if (prices.get(i) < minPrice) {
+                minPrice = prices.get(i);
+                index = i;
+            }
+        }
+        return items.get(index);
         // TODO: Return name of cheapest item
-        return "";
     }
     
     public boolean containsItem(String item) {
+       return items.contains(item);
         // TODO: Check if item exists in cart
-        return false;
     }
     
     public void clear() {
+        items.clear();
+        prices.clear();
         // TODO: Remove all items and prices
     }
 }
-
+}
+   
 // Exercise 6: Bank account with transaction management
 class BankAccount {
     String accountNumber;
     double balance;
     ArrayList<String> transactionHistory;
-    
+
     public BankAccount(String accountNumber) {
-        // TODO: Initialize account number, set balance to 0, create empty history
+        this.accountNumber = accountNumber;
+        this.balance = 0.0;
+        this.transactionHistory = new ArrayList<>();
     }
-    
+
     public boolean deposit(double amount) {
-        // TODO: Add money (validate amount > 0)
-        // Add transaction to history: "Deposited $XX.XX"
-        // Return true if successful
-        return false;
+        if (amount > 0) {
+            balance += amount;
+            transactionHistory.add(String.format("Deposited $%.2f", amount));
+            return true;
+        } else {
+            transactionHistory.add(String.format("Failed deposit $%.2f", amount));
+            return false;
+        }
     }
-    
+
     public boolean withdraw(double amount) {
-        // TODO: Remove money if sufficient funds (amount > 0 and balance >= amount)
-        // Add transaction to history: "Withdrew $XX.XX" or "Failed withdrawal $XX.XX"
-        // Return true if successful
-        return false;
+        if (amount > 0 && balance >= amount) {
+            balance -= amount;
+            transactionHistory.add(String.format("Withdrew $%.2f", amount));
+            return true;
+        } else {
+            transactionHistory.add(String.format("Failed withdrawal $%.2f", amount));
+            return false;
+        }
     }
-    
+
     public boolean transfer(BankAccount toAccount, double amount) {
-        // TODO: Transfer money to another account
-        // Should withdraw from this account and deposit to other account
-        // Add transaction to history for both accounts
-        // Return true if successful
+        if (this.withdraw(amount)) {
+            boolean success = toAccount.deposit(amount);
+            if (success) {
+                transactionHistory.add(String.format("Transferred $%.2f to account %s", amount, toAccount.getAccountNumber()));
+                toAccount.transactionHistory.add(String.format("Received $%.2f from account %s", amount, this.accountNumber));
+                return true;
+            } else {
+                // Rollback withdrawal if deposit fails
+                this.deposit(amount);
+            }
+        }
+        transactionHistory.add(String.format("Failed transfer $%.2f to account %s", amount, toAccount.getAccountNumber()));
         return false;
     }
-    
+
     public double getBalance() {
-        // TODO: Return current balance
-        return 0.0;
+        return balance;
     }
-    
+
     public String getAccountNumber() {
-        // TODO: Return account number
-        return "";
+        return accountNumber;
     }
-    
+
     public ArrayList<String> getTransactionHistory() {
-        // TODO: Return copy of transaction history
-        return new ArrayList<>();
+        return new ArrayList<>(transactionHistory); // Defensive copy
     }
-    
+
     public int getTransactionCount() {
-        // TODO: Return number of transactions
-        return 0;
+        return transactionHistory.size();
     }
-    
+
     public boolean hasInsufficientFunds(double amount) {
-        // TODO: Check if withdrawal would overdraft
-        return false;
+        return balance < amount;
     }
-    
+
     public double calculateInterest(double rate) {
-        // TODO: Return interest amount for given rate
-        // Interest = balance * rate
-        return 0.0;
+        return balance * rate;
     }
 }
+
+
 
 // Exercise 7: Student grade book
 class StudentGradeBook {
@@ -364,62 +414,110 @@ class StudentGradeBook {
     ArrayList<Double> grades;
     
     public StudentGradeBook(String name) {
+         studentName = name;
+        grades = new ArrayList<>();
         // TODO: Set student name and initialize empty grades list
     }
     
     public boolean addGrade(double grade) {
+         if (grade >= 0 && grade <= 100) {
+            grades.add(grade);
+            return true;
+        }
+        return false;
         // TODO: Add grade (validate 0-100 range)
         // Return true if valid and added
-        return false;
     }
     
     public boolean removeLowestGrade() {
+        if (grades.isEmpty()) return false;
+
+        double lowest = grades.get(0);
+        int index = 0;
+        for (int i = 1; i < grades.size(); i++) {
+            if (grades.get(i) < lowest) {
+                lowest = grades.get(i);
+                index = i;
+            }
+        }
+        grades.remove(index);
+        return true;
+    }
         // TODO: Remove the lowest grade
         // Return true if grade was removed
-        return false;
-    }
+    
     
     public int getGradeCount() {
+        return grades.size();
         // TODO: Return number of grades
-        return 0;
     }
     
     public double calculateAverage() {
         // TODO: Return average of all grades
-        return 0.0;
+        if (grades.isEmpty()) return 0.0;
+
+        double sum = 0.0;
+        for (double g : grades) {
+            sum += g;
+        }
+        return sum / grades.size();
     }
+    
     
     public double getHighestGrade() {
         // TODO: Return highest grade
-        return 0.0;
+       if (grades.isEmpty()) return 0.0;
+
+        double highest = grades.get(0);
+        for (double g : grades) {
+            if (g > highest) highest = g;
+        }
+        return highest;
     }
     
     public double getLowestGrade() {
+        if (grades.isEmpty()) return 0.0;
+
+        double lowest = grades.get(0);
+        for (double g : grades) {
+            if (g < lowest) lowest = g;
+        }
+        return lowest;
         // TODO: Return lowest grade
-        return 0.0;
     }
     
     public String getLetterGrade() {
+        double avg = calculateAverage();
+        if (avg >= 90) return "A";
+        else if (avg >= 80) return "B";
+        else if (avg >= 70) return "C";
+        else if (avg >= 60) return "D";
+        else return "F";
         // TODO: Return letter grade based on average
         // A: 90-100, B: 80-89, C: 70-79, D: 60-69, F: below 60
-        return "";
+        
     }
     
     public boolean isPassingGrade() {
+        return calculateAverage() >= 60;
         // TODO: Return true if average >= 60
-        return false;
+        
     }
     
     public String getGradesSummary() {
+          return String.format("Student: %s, Grades: %d, Average: %.2f, Letter: %s",
+                studentName, getGradeCount(), calculateAverage(), getLetterGrade());
         // TODO: Return string with key statistics
         // Format: "Student: [name], Grades: [count], Average: [avg], Letter: [letter]"
-        return "";
     }
     
     public boolean hasGradeAbove(double threshold) {
-        // TODO: Check if any grade exceeds threshold
+        for (double g : grades) {
+            if (g > threshold) return true;
+        }
         return false;
     }
+        // TODO: Check if any grade exceeds threshold
 }
 
 // Test your implementations below:
