@@ -140,6 +140,7 @@ public void removeAllOccurrences(ArrayList<String> list, String item) {
     // Your code here
     
 }
+}
 
 // Exercise 6: List Operations
 // Remove all items from list

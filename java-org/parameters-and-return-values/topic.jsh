@@ -10,9 +10,12 @@ import java.util.Arrays;
 class DataValidator {
     
     public String validateEmail(String email) {
+
         // TODO: Return "Valid" if email contains @ and ., otherwise return specific error message
         // Check for null, empty, missing @, missing .
-        return "";
+        public boolean isValidEmail(String email) {
+    return email != null && email.contains("@") && email.contains(".");
+    }
     }
     
     public boolean validatePassword(String password, int minLength, boolean requireSpecial) {
